@@ -78,6 +78,7 @@ def eco_win_lose_draw_totals(eco, files_dir):
                         game, "endlesstrax"
                     )  # TODO: Remove hardcoded user
 
+                    # TODO: Accomodate all game codes
                     if result == "win":
                         val = eco_dict.get("Won")
                         eco_dict["Won"] = val + 1
