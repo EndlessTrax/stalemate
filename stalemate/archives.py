@@ -21,6 +21,9 @@ def fetch_archives_list(url):
 
 # TODO: ? Might need removing later. 
 def save_games_to_file(url):
+    """
+    TODO:
+    """
     archive_date = url[-7:].replace("/", "-")
     r = requests.get(url).json()
 
