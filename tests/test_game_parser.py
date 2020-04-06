@@ -1,6 +1,6 @@
 import pytest
 import json
-import stalemate.game_parser
+from stalemate.game_parser import game_result
 
 with open('game_data/2008-07.json', 'r', encoding='utf-8') as game_file:
     games = json.load(game_file)
