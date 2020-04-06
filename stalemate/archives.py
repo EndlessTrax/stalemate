@@ -20,7 +20,7 @@ def fetch_archives_list(url):
 
 
 # TODO: ? Might need removing later. 
-def save_games_to_file(url):
+def save_archive_to_file(url):
     """
     TODO:
     """
