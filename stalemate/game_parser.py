@@ -11,7 +11,7 @@ def get_game_eco(game):
     """
     TODO:
     """
-    pgn = game['pgn']
+    pgn = game["pgn"]
     p = re.compile('ECO "')
     search_eco = p.search(pgn)
 
@@ -31,12 +31,12 @@ def eco_played_totals(files_dir):
     list_of_files = os.listdir(files_dir)
 
     for game_file in list_of_files:
-        with open(f"{files_dir}/{game_file}", 'r', encoding='utf-8') as f:
+        with open(f"{files_dir}/{game_file}", "r", encoding="utf-8") as f:
             games_in_file = json.load(f)
 
             for game in games_in_file:
                 game_eco = get_game_eco(game)
-                
+
                 if game_eco in played_ecos:
                     val = played_ecos.get(game_eco)
                     played_ecos[game_eco] = val + 1
@@ -50,16 +50,15 @@ def eco_played_totals(files_dir):
 
 def game_result(game, user):
     try:
-        if game['white']['username'].lower() == user:
-            result = game['white']['result']
+        if game["white"]["username"].lower() == user:
+            result = game["white"]["result"]
             return result
-        elif game['black']['username'].lower() == user:
-            result = game['black']['result']
+        elif game["black"]["username"].lower() == user:
+            result = game["black"]["result"]
             return result
 
     except Exception as e:
-        raise(e)
-
+        raise (e)
 
 
 def eco_win_lose_draw_totals(eco, files_dir):
@@ -68,24 +67,25 @@ def eco_win_lose_draw_totals(eco, files_dir):
     list_of_files = os.listdir(files_dir)
 
     for game_file in list_of_files:
-        with open(f"{files_dir}/{game_file}", 'r', encoding='utf-8') as f:
+        with open(f"{files_dir}/{game_file}", "r", encoding="utf-8") as f:
             games_in_file = json.load(f)
 
             for game in games_in_file:
                 game_eco = get_game_eco(game)
 
                 if game_eco == eco:
-                    result = game_result(game, 'endlesstrax') #TODO: Remove hardcoded user 
+                    result = game_result(
+                        game, "endlesstrax"
+                    )  # TODO: Remove hardcoded user
 
-                    if result == 'win':
-                        val = eco_dict.get('Won')
-                        eco_dict['Won'] = val + 1
-                    elif result == 'checkmated' or result == 'resigned':
-                        val = eco_dict.get('Lost')
-                        eco_dict['Lost'] = val + 1
-                    elif result == 'agreed' or result == 'stalemate':
-                        val = eco_dict.get('Drawn')
-                        eco_dict['Drawn'] = val + 1
+                    if result == "win":
+                        val = eco_dict.get("Won")
+                        eco_dict["Won"] = val + 1
+                    elif result == "checkmated" or result == "resigned":
+                        val = eco_dict.get("Lost")
+                        eco_dict["Lost"] = val + 1
+                    elif result == "agreed" or result == "stalemate":
+                        val = eco_dict.get("Drawn")
+                        eco_dict["Drawn"] = val + 1
 
     return eco_dict
-
